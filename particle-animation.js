@@ -6,11 +6,7 @@ var easeParticlesModule = (function () {
         canvas: null,
         ctx: null,
         maxParticlesPerEmitter: 25,
-        easings: ['linear', 'inQuad', 'outQuad', 'inOutQuad', 'inSine', 'outSine', 'inOutSine', 'inExpo', 'outExpo', 'inOutExpo', 'inCirc', 'outCirc', 'inOutCirc'],
-        randomProperty: function (obj) {
-            var keys = Object.keys(obj);
-            return obj[keys[ keys.length * Math.random() << 0]];
-        }
+        easings: ['linear', 'inQuad', 'outQuad', 'inOutQuad', 'inSine', 'outSine', 'inOutSine', 'inExpo', 'outExpo', 'inOutExpo', 'inCirc', 'outCirc', 'inOutCirc']
     };
     
     function Emitter (pos, des, opd, oed, sam, col) {
