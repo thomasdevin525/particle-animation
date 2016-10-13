@@ -1,3 +1,4 @@
+// All of the easing equations you'll ever need :)
 var easingData = {
     linear: function (t, b, c, d) {
         return c*t/d + b;

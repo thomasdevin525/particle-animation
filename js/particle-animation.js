@@ -1,17 +1,30 @@
 var easeParticlesModule = (function () {
     
     var data = {
-        looping: true,
+        
         emitters: [],
+        
+        /* Change max if you'd like to see more particles */
+        maxParticlesPerEmitter: 25,
+        
+        /* Chosen easing equations from easing-equations.js */
+        easings: ['linear', 'inQuad', 'outQuad', 'inOutQuad', 'inSine', 'outSine', 'inOutSine', 'inExpo', 'outExpo', 'inOutExpo', 'inCirc', 'outCirc', 'inOutCirc'],
+        
+        /* Defined on create(), holds references to canvas and context */
         canvas: null,
         ctx: null,
-        maxParticlesPerEmitter: 25,
-        easings: ['linear', 'inQuad', 'outQuad', 'inOutQuad', 'inSine', 'outSine', 'inOutSine', 'inExpo', 'outExpo', 'inOutExpo', 'inCirc', 'outCirc', 'inOutCirc']
+        
+        /* Looping is true while there are active particles */
+        looping: true
+        
     };
     
     function Emitter (pos, des, opd, oed, sam, col) {
+        
+        /* The start and end position of each particle */
         this.position = pos || {x: 0, y: 0};
         this.particleDestination = des || {x: 0, y: 0};
+        
         this.sampleAmount = sam || 1;
         this.killAfterParticle = sam > data.maxParticlesPerEmitter ? data.maxParticlesPerEmitter : this.sampleAmount;
         this.rate = this.killAfterParticle;
@@ -20,11 +33,13 @@ var easeParticlesModule = (function () {
         this.particleColor = col || '#FFFFFF';
         this.particleCount = 0;
         this.particles = [];
+        
         this.getParticleSampleAmount = function () {
             var amount = Math.round(this.sampleAmount / this.particles.length);
             this.sampleAmount -= amount;
             return amount;
         };
+        
         this.spawnParticles = function () {
             var i = 0, x = 0, y = 0, f = 0,
                 o = data.easings;
@@ -38,6 +53,7 @@ var easeParticlesModule = (function () {
                 this.particleCount++;
             }
         };
+        
     }
     function Particle (position, easeX, easeY, frames) {
         this.frame = 0;
